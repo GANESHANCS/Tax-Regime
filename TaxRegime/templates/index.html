@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Tax Regime - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #2b3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-box {
+      background-color: white;
+      color: #2b3e50;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 20px;
+    }
+
+    .login-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .login-box p {
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .error-text {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .checkbox input {
+      margin-right: 5px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background-color: #218838;
+    }
+
+    .link-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .link-btn {
+      background-color: #e0e0e0;
+      padding: 8px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background-color: #d5d5d5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="icon-box">📊</div>
+    <div class="title">Tax Regime</div>
+  </header>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Log In</h2>
+      <p>Please enter your Aadhar number and password.</p>
+
+      {% if error %}
+        <p class="error-text">{{ error }}</p>
+      {% endif %}
+
+      <form method="POST" action="/">
+        <fieldset class="user-info-box">
+          <legend class="legend-label">User Information</legend>
+
+          <label for="aadhar">Aadhar Number</label>
+          <input type="text" id="aadhar" name="aadhar" required />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </fieldset>
+
+        <div class="checkbox">
+          <input type="checkbox" id="keepLoggedIn" />
+          <label for="keepLoggedIn">Keep me logged in</label>
+        </div>
+
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+
+      <div class="link-buttons">
+        <span class="link-btn" style="pointer-events: none; opacity: 0.5;">Forgot Password?</span>
+        <a href="{{ url_for('register') }}" class="link-btn">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Tax Regime</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    #contentWrapper {
+      transition: margin-left 0.3s ease;
+    }
+
+    .menu-sidebar {
+      width: 200px;
+      background-color: #2b3e50;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: -200px;
+      height: 100%;
+      overflow: hidden;
+      transition: left 0.3s ease;
+      z-index: 999;
+      padding-top: 60px;
+    }
+
+    .menu-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-sidebar li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #444;
+      cursor: pointer;
+    }
+
+    .menu-sidebar li:hover {
+      background-color: #3c5870;
+    }
+
+    header {
+      background-color: #2b3e50;
+      color: white;
+      padding: 15px 20px 5px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-info {
+      margin-left: auto;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logout-button {
+      background-color: white;
+      color: red;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .menu-toggle-bar {
+      background-color: #d6eaff;
+      padding: 10px;
+      cursor: pointer;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .info-strip {
+      background-color: #1b5e20;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2b3e50;
+      color: white;
+    }
+
+    .record-box, .documents-box {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .record-label, .documents-label {
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background-color: #e6f0ff;
+      color: #0066cc;
+      padding: 4px 10px;
+      font-weight: bold;
+      border: 1px solid #99ccff;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .form-row label {
+      width: 140px;
+      font-size: 14px;
+    }
+
+    .form-row input {
+      padding: 6px;
+      width: 300px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .documents-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .documents-buttons button {
+      padding: 10px 14px;
+      border: none;
+      background-color: #e0e0e0;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .info-text {
+      margin: 30px 0 10px 0;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .dropdown-row {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .dropdown-row select {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .checkbox-row {
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .checkbox-row label {
+      font-size: 14px;
+    }
+
+    hr.separator {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .submit-button {
+      display: none;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #0056b3;
+    }
+
+    .calculator-button {
+      display: inline-block;
+      padding: 10px 14px;
+      background-color: #e0e0e0;
+      color: black;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .calculator-button:hover {
+      background-color: #ccc;
+    }
+
+    .success-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-sidebar" id="menuSidebar">
+    <ul>
+       <li onclick="location.href='{{ url_for('forgot_password') }}'">Change Password</li>
+      <li onclick="location.href='{{ url_for('request_view') }}'">Tax Regime</li>
+      <li onclick="location.href='{{ url_for('my_tax_regime') }}'">My Tax Regime</li>
+    </ul>
+  </div>
+
+  <div id="contentWrapper">
+    <header>
+      <div class="header-left">
+        <div class="header-title">
+          <span>📊</span> <span>Tax Regime</span>
+        </div>
+      </div>
+      <div class="user-info">
+        <span>Welcome <span id="username">{{ name }}</span></span>
+        <a href="{{ url_for('logout') }}" class="logout-button">Log Out</a>
+      </div>
+    </header>
+
+    <div class="menu-toggle-bar" onclick="toggleMenu()">☰ Menu</div>
+
+    <div class="info-strip">
+      Tax Regime Switch option facility from default (New Tax Regime) to Old Tax Regime for Financial Year 2024–25
+    </div>
+
+    <div class="main-content">
+      <table>
+        <thead>
+          <tr>
+            <th>Aadhar Number</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ aadhar }}</td>
+            <td>{{ name }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="record-box">
+        <div class="record-label">Record Details</div>
+        <div class="form-row">
+          <label for="aadhar">Aadhar No.:</label>
+          <input type="text" id="aadhar" value="{{ aadhar }}" readonly />
+        </div>
+        <div class="form-row">
+          <label for="name">Name:</label>
+          <input type="text" id="name" value="{{ name }}" readonly />
+        </div>
+      </div>
+
+      <div class="documents-box">
+        <div class="documents-label">Documents</div>
+        <div class="documents-buttons">
+          <button onclick="openPDF()">Circular</button>
+          <a href="{{ url_for('static', filename='hack_the_cosmos.pdf') }}" class="calculator-button" download>Download Tax Circular</a>
+        </div>
+      </div>
+
+      <p class="info-text">
+        You are currently under income Tax default Option-1 (New Tax Regime).
+      </p>
+
+      <div class="dropdown-row">
+        <label for="switch-option">Do you want to switch to Option-2 (Old Tax Regime)?</label>
+        <select id="switch-option">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="checkbox1" />
+        <label for="checkbox1">I have read the enclosed documents carefully.</label>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="checkbox2" />
+        <label for="checkbox2">I understand I can switch only once in a Financial Year.</label>
+      </div>
+
+      <hr class="separator" />
+      <button class="submit-button" id="submitBtn" onclick="showMessage()">Submit</button>
+      <div id="successMsg" class="success-message" style="display:none;">Submitted Successfully!</div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('menuSidebar');
+      const wrapper = document.getElementById('contentWrapper');
+      if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-200px";
+        wrapper.style.marginLeft = "0px";
+      } else {
+        sidebar.style.left = "0px";
+        wrapper.style.marginLeft = "200px";
+      }
+    }
+
+    function checkConditions() {
+      const cb1 = document.getElementById("checkbox1").checked;
+      const cb2 = document.getElementById("checkbox2").checked;
+      const dropdown = document.getElementById("switch-option").value;
+      const submitBtn = document.getElementById("submitBtn");
+      if (cb1 && cb2 && dropdown === "yes") {
+        submitBtn.style.display = "block";
+      } else {
+        submitBtn.style.display = "none";
+      }
+    }
+
+    function showMessage() {
+      document.getElementById("successMsg").style.display = "block";
+    }
+
+    document.getElementById("checkbox1").addEventListener("change", checkConditions);
+    document.getElementById("checkbox2").addEventListener("change", checkConditions);
+    document.getElementById("switch-option").addEventListener("change", checkConditions);
+  </script>
+
+  <div id="pdfModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000; justify-content:center; align-items:center;">
+    <div style="position:relative; width:80%; height:90%; background:white; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.5); overflow:hidden;">
+      <button onclick="closePDF()" style="position:absolute; top:10px; right:10px; background:red; color:white; border:none; padding:5px 10px; font-weight:bold; border-radius:4px; cursor:pointer;">Close ✖</button>
+      <iframe id="pdfFrame" src="" width="100%" height="100%" style="border:none;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openPDF() {
+      document.getElementById("pdfFrame").src = "{{ url_for('static', filename='hack_the_cosmos.pdf') }}";
+      document.getElementById("pdfModal").style.display = "flex";
+    }
+
+    function closePDF() {
+      document.getElementById("pdfModal").style.display = "none";
+      document.getElementById("pdfFrame").src = "";
+    }
+  </script>
+
+</body>
+</html>

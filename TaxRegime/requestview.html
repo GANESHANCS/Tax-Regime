@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tax Regime</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #2b3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-box {
+      background-color: white;
+      color: #2b3e50;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 5px 10px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .welcome {
+      font-size: 14px;
+    }
+
+    .logout-box {
+      background-color: white;
+      color: red;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .request-view {
+      background-color: #388e3c;
+      color: white;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 17px;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .table-section {
+      background-color: white;
+      padding: 20px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0px;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2b3e50;
+      color: white;
+    }
+
+    .record-details {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      width: 100%;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .record-title {
+      position: absolute;
+      top: -12px;
+      left: 15px;
+      background-color: white;
+      color: #007BFF;
+      font-size: 16px;
+      padding: 0 8px;
+      font-weight: bold;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      justify-content: flex-start;
+    }
+
+    .form-row label {
+      width: 140px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .form-row input {
+      padding: 6px;
+      width: 300px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .info-text {
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .switch-line {
+      margin: 10px 0;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .switch-line select {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="icon-box">📊</div>
+      <div class="title">Tax Regime</div>
+    </div>
+    <div class="header-right">
+      <span class="welcome">Welcome <span id="username">User</span></span>
+      <a href="#" class="logout-box">Log Out</a>
+    </div>
+  </header>
+
+  <div class="request-view">Request View</div>
+
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Aadhar Number</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="aadhar-display"></td>
+          <td id="name-display"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="record-details">
+    <div class="record-title">Record Details</div>
+
+    <div class="form-row">
+      <label>Aadhar No.:</label>
+      <input type="text" id="aadhar" name="aadhar" readonly />
+    </div>
+
+    <div class="form-row">
+      <label>Name:</label>
+      <input type="text" id="name" name="name" readonly />
+    </div>
+
+    <p class="info-text">
+      You are currently under income Tax default Option-1 (New Tax Regime).
+    </p>
+
+    <div class="switch-line">
+      <label for="switch-option">Do you want to switch from Option-1 (New Tax Regime) to Option-2 (Old Tax Regime)?</label>
+      <select id="switch-option">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+  </div>
+</body>
+</html>

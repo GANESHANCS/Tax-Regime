@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgot Password</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #2b3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-box {
+      background-color: white;
+      color: #2b3e50;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 20px;
+    }
+
+    .form-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    .form-box h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .form-box p {
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .error-text {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .success-text {
+      color: green;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="icon-box">📊</div>
+    <div class="title">Tax Regime</div>
+  </header>
+
+  <div class="form-container">
+    <div class="form-box">
+      <h2>Forgot Password</h2>
+      <p>Enter your Aadhar number and set a new password.</p>
+
+      {% if error %}
+        <p class="error-text">{{ error }}</p>
+      {% endif %}
+      {% if success %}
+        <p class="success-text">{{ success }}</p>
+      {% endif %}
+
+      <form method="POST">
+        <fieldset>
+          <legend>Reset Password</legend>
+
+          <label for="aadhar">Aadhar Number</label>
+          <input type="text" id="aadhar" name="aadhar" required>
+
+          <label for="password">New Password</label>
+          <input type="password" id="password" name="password" required>
+
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Update Password</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

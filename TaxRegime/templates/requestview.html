@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='requestview.css') }}">
+  <title>Request View - Tax Regime</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2b3e50;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .icon-box {
+      background-color: white;
+      color: #2b3e50;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logout {
+      color: white;
+      text-decoration: none;
+      background-color: #dc3545;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    .green-strip {
+      background-color: #157f3b;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .record-section {
+      padding: 20px;
+    }
+
+    .record-box {
+      border: 2px solid #ccc;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    .record-box fieldset {
+      border: 2px solid #007BFF;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      background-color: #eaf4ff;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #007BFF;
+      font-size: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .form-row label {
+      width: 150px;
+      font-weight: bold;
+    }
+
+    .form-row input {
+      width: 300px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    select {
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .info-line {
+      font-size: 16px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: 20px;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #aaa;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2b3e50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="title">
+      <div class="icon-box">📊</div>
+      Tax Regime
+    </div>
+    <div>
+      Welcome {{ name }} | <a href="/" class="logout">Log Out</a>
+    </div>
+  </header>
+
+  <div class="green-strip">Request View</div>
+
+  <div class="record-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Aadhar Number</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ aadhar }}</td>
+          <td>{{ name }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="record-box">
+      <fieldset>
+        <legend>Record Details</legend>
+        <div class="form-row">
+          <label for="aadhar">Aadhar Number:</label>
+          <input type="text" id="aadhar" value="{{ aadhar }}" readonly />
+        </div>
+        <div class="form-row">
+          <label for="name">Name:</label>
+          <input type="text" id="name" value="{{ name }}" readonly />
+        </div>
+      </fieldset>
+
+      <div class="info-line">
+        You are currently under income tax default option – (New Tax Regime)
+      </div>
+
+      <!-- Corrected dropdown form -->
+  <form method="POST" action="{{ url_for('request_view') }}">
+    <label for="dropdown" style="font-size: 16px; font-weight: 500;">
+      Do you want to switch from Option1 (New Tax Regime) to Option2 (Old Tax Regime)?
+    </label>
+    <select id="dropdown" name="dropdown" onchange="this.form.submit()">
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+  </form>
+
+    </div>
+  </div>
+
+</body>
+</html>
